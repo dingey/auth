@@ -1,0 +1,19 @@
+logging:
+  level:
+    com.github.dingey.auth: debug
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  datasource:
+    url: jdbc:mysql://localhost:3306/auth?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    username: root
+    password: root
+
+auth:
+  web-type: freemarker
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper:
+    map-results: true

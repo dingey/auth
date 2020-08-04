@@ -10,24 +10,32 @@
             <div class="modal-body">
                 <form class="form-horizontal">
                     <input type="hidden" name="id" value="${(group.id)!}">
-                    <div class="card-body">
-                        <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-2 col-form-label">名称</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="name" value="${(group.name)!}">
-                            </div>
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">*名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="name" value="${(group.name)!}" required>
                         </div>
-                        <div class="form-group row">
-                            <label for="inputPassword3" class="col-sm-2 col-form-label">主管</label>
-                            <div class="col-sm-10">
-                                <select class="custom-select">
-                                    <option>option 1</option>
-                                    <option>option 2</option>
-                                    <option>option 3</option>
-                                    <option>option 4</option>
-                                    <option>option 5</option>
-                                </select>
-                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPassword3" class="col-sm-2 col-form-label">主管</label>
+                        <div class="col-sm-4">
+                            <select class="custom-select">
+                                <option>option 1</option>
+                                <option>option 2</option>
+                            </select>
+                        </div>
+                        <label for="inputPassword3" class="col-sm-2 col-form-label">主管2</label>
+                        <div class="col-sm-4">
+                            <select class="custom-select">
+                                <option>option 1</option>
+                                <option>option 2</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">描述</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" name="desc"></textarea>
                         </div>
                     </div>
                 </form>
@@ -39,22 +47,3 @@
         </div>
     </div>
 </div>
-<script>
-    function get(id) {
-        $("#getContainer").load("get?id=" + id + " #getBody", function () {
-            $("#modal").modal();
-        });
-    }
-
-    function save() {
-        var param = $("form:eq(1)").serialize();
-        $.post("save", param, function (data) {
-            if (data.code == 0) {
-                $("#modal").modal('hide');
-                page();
-            } else {
-                layer.msg(data);
-            }
-        }, "json");
-    }
-</script>

@@ -30,43 +30,4 @@
             </ul>
         </div>
     </div>
-    <script>
-        var pageNum = 1;
-
-        function page(num, form, table, size) {
-            if (form == undefined || form == "") {
-                form = "form:eq(0)";
-            }
-            if (table == undefined || table == "") {
-                table = "table:eq(0)";
-            }
-            if (size == undefined) {
-                size = $("#pageSize").val();
-            }
-            if (num == undefined) {
-                num = pageNum;
-            } else {
-                pageNum = num;
-            }
-            var url = $(form).attr("action");
-            if (url == undefined) {
-                url = window.location.pathname;
-            }
-            $("#t").load(url + " #tb", "pageNum=" + num + "&pageSize=" + size + "&" + serialize(form), function () {
-                try {
-                    if (init && typeof (init) == "function") {
-                        init();
-                    }
-                    pageNum = num;
-                } catch (e) {
-                    //console.error(e.message)
-                }
-            });
-        }
-
-        function serialize(id) {
-            const parmStr = $(id).serialize();
-            return parmStr.split("&").filter(str => !str.endsWith("=")).join("&");
-        }
-    </script>
 </#if>

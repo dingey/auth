@@ -39,22 +39,3 @@
         </div>
     </div>
 </div>
-<script>
-    function get(id) {
-        $("#getContainer").load("get?id=" + id + " #getBody", function () {
-            $("#modal").modal();
-        });
-    }
-
-    function save() {
-        var param = $("form:eq(1)").serialize();
-        $.post("save", param, function (data) {
-            if (data.code == 0) {
-                $("#modal").modal('hide');
-                page();
-            } else {
-                layer.msg(data);
-            }
-        }, "json");
-    }
-</script>

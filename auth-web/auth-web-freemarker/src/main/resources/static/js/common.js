@@ -68,33 +68,38 @@ function page(num, form, table, size) {
     if (url == undefined) {
         url = window.location.pathname;
     }
-    $("#t").load(url + " #tb", "pageNum=" + num + "&pageSize=" + size + "&" + serialize(form), function () {
-        try {
-            if (initList && typeof (initList) == "function") {
-                initList();
-            }
-            pageNum = num;
-        } catch (e) {
-            //console.error(e.message)
+    $("#t").load(url + " #tb", "pageNum=" + num + "&pageSize=" + size + "&" + serialize(form), function (response, status, xhr) {
+        if (status == "success") {
+            try {
+                if (initList && typeof (initList) == "function") {
+                    initList();
+                }
+                pageNum = num;
+             } catch (e) {}
+        } else {
+            alert("页面载入失败");
         }
     });
 }
 
 function serialize(id) {
     var parmStr = $(id).serialize();
-    return parmStr.split("&").filter(str => !str.endsWith("=")).join("&");
+    return parmStr.split("&").filter(str=>!str.endsWith("=")).join("&");
 }
 
 function get(id) {
-    $("#getContainer").load("get?id=" + id + " #getBody", function () {
-        try {
-            if (initGet && typeof (initGet) == "function") {
-                initGet();
+    $("#getContainer").load("get?id=" + id + " #getBody", function (response, status, xhr) {
+        if (status == "success") {
+            try {
+                if (initGet && typeof (initGet) == "function") {
+                    initGet();
+                }
+            } catch (e) {
             }
-        } catch (e) {
-            //console.error(e.message)
+            $("#modal").modal();
+        } else {
+            alert("页面载入失败");
         }
-        $("#modal").modal();
     });
 }
 

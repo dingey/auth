@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @Controller
 public class SysPermissionController {
     private final SysPermissionService sysPermissionService;
@@ -29,8 +31,8 @@ public class SysPermissionController {
                              @RequestParam(defaultValue = "1") int pageNum,
                              @RequestParam(defaultValue = "10") int pageSize) {
         ModelAndView view = new ModelAndView("/sys/permission/list");
-        AuthPager<SysPermission> pager = sysPermissionService.pager(permission, pageNum, pageSize);
-        view.addObject("pager", pager);
+        List<SysPermission> list = sysPermissionService.list(permission);
+        view.addObject("list", list);
         return view;
     }
 

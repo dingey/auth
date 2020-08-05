@@ -90,6 +90,12 @@
                                     <p>用户</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="/sys/permission/list" class="nav-link">
+                                    <i class="fa fa-wrench nav-icon"></i>
+                                    <p>权限</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
 

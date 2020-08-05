@@ -1,13 +1,16 @@
 package com.github.dingey.auth.web;
 
 import com.github.dingey.auth.AuthPager;
+import com.github.dingey.auth.AuthResult;
+import com.github.dingey.auth.model.Insert;
 import com.github.dingey.auth.model.SysGroup;
+import com.github.dingey.auth.model.Update;
 import com.github.dingey.auth.service.SysGroupService;
 import com.github.dingey.auth.service.SysUserService;
 import com.github.dingey.auth.util.FreemarkerUtil;
-import com.github.dingey.common.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,8 +52,15 @@ public class SysGroupController {
 
     @ResponseBody
     @PostMapping(path = "/sys/group/save")
-    public Result<Integer> save(SysGroup group) {
+    public AuthResult<Integer> save(@Validated(Insert.class) SysGroup group) {
         int save = sysGroupService.save(group);
-        return Result.success(save);
+        return AuthResult.success(save);
+    }
+
+    @ResponseBody
+    @PostMapping(path = "/sys/group/update")
+    public AuthResult<Integer> update(@Validated(Update.class) SysGroup group) {
+        int update = sysGroupService.update(group);
+        return AuthResult.success(update);
     }
 }

@@ -18,11 +18,11 @@ public abstract class BaseEntity<T> implements Serializable {
     @ApiModelProperty(example = "0")
     private Long id;
 
-    @NotNull(groups = {Update.class}, message = "修改时间不能为空")
+    //@NotNull(groups = {Update.class}, message = "修改时间不能为空")
     @ApiModelProperty("最后修改时间")
     private Date lastModified;
 
-    @NotNull(groups = {Insert.class}, message = "创建时间不能为空")
+    //@NotNull(groups = {Insert.class}, message = "创建时间不能为空")
     @ApiModelProperty("创建时间")
     private Date createTime;
 

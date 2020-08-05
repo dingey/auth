@@ -38,11 +38,7 @@ public abstract class AuthBaseServiceImpl<M extends BaseMapper<T>, T extends Bas
 
     @Override
     public int save(T t) {
-        if (t.getId() != null && t.getId() > 0L) {
-            return mapper.updateSelective(t);
-        } else {
-            return mapper.insertSelective(t);
-        }
+        return mapper.insertSelective(t);
     }
 
     @Override

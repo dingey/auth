@@ -105,7 +105,8 @@ function get(id) {
 
 function save() {
     var param = $("form:eq(1)").serialize();
-    $.post("save", param, function (data) {
+    var id=$("form:eq(1)").find("input[name=id]").val();
+    $.post((id==""||id==undefined)?"save":"update", param, function (data) {
         if (data.code == 0) {
             $("#modal").modal('hide');
             page();

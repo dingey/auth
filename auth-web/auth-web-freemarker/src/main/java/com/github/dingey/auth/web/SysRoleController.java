@@ -1,14 +1,17 @@
 package com.github.dingey.auth.web;
 
 import com.github.dingey.auth.AuthPager;
+import com.github.dingey.auth.AuthResult;
+import com.github.dingey.auth.model.Insert;
 import com.github.dingey.auth.model.SysRole;
+import com.github.dingey.auth.model.Update;
 import com.github.dingey.auth.service.SysGroupService;
 import com.github.dingey.auth.service.SysRoleService;
 import com.github.dingey.auth.util.FreemarkerUtil;
 import com.github.dingey.auth.vo.IdNameVO;
-import com.github.dingey.common.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,8 +54,15 @@ public class SysRoleController {
 
     @ResponseBody
     @PostMapping(path = "/sys/role/save")
-    public Result<Integer> save(SysRole role) {
+    public AuthResult<Integer> save(@Validated(Insert.class) SysRole role) {
         int save = sysRoleService.save(role);
-        return Result.success(save);
+        return AuthResult.success(save);
+    }
+
+    @ResponseBody
+    @PostMapping(path = "/sys/role/update")
+    public AuthResult<Integer> update(@Validated(Update.class) SysRole role) {
+        int save = sysRoleService.update(role);
+        return AuthResult.success(save);
     }
 }

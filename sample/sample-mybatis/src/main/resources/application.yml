@@ -16,4 +16,5 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
   mapper:
-    map-results: true
+    map-key: true
+    strategy: identity

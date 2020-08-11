@@ -34,4 +34,6 @@ public class SysPermission extends BaseEntity<SysPermission> {
 
     @ApiModelProperty("路径")
     private String url;
+
+    private Integer sequence;
 }

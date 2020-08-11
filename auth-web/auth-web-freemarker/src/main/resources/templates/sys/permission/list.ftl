@@ -1,6 +1,6 @@
 <#import "/sys/common/layout.ftl" as layout />
 <@layout.standard title="权限"
-cssMap={"":"https://dingey.github.io/demo/ztree/zTreeStyle.css"}
+cssMap={"":"https://dingey.github.io/demo/ztree/zTreeStyle.css,/css/permission.css"}
 jsMap={"":"https://dingey.github.io/demo/ztree/jquery.ztree.all.js,/js/permission.js"}>
     <div class="content-wrapper">
         <section class="content-header">
@@ -21,7 +21,18 @@ jsMap={"":"https://dingey.github.io/demo/ztree/jquery.ztree.all.js,/js/permissio
 
         <section class="content" id="content">
             <div class="card" id="card">
-                <ul id="treeDemo" class="ztree"></ul>
+                <div class="card-header">
+                    <form action="/sys/group/list">
+                        <div class="form-row align-items-center">
+                            <div class="col-auto">
+                                <button type="button" class="btn btn-primary" style="margin-bottom: 0px!important;">新增权限</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div style="min-height: 320px">
+                    <ul id="treeDemo" class="ztree"></ul>
+                </div>
             </div>
         </section>
     </div>

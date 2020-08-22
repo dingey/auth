@@ -90,4 +90,13 @@ public class SysPermissionController {
         sysPermissionService.save(p);
         return p.getId();
     }
+
+    @ResponseBody
+    @PostMapping(path = "/sys/permission/del")
+    public Object del(Long id) {
+        SysPermission sp=new SysPermission();
+        sp.setId(id);
+        sp.setIsDel(1);
+        return  sysPermissionService.update(sp);
+    }
 }
